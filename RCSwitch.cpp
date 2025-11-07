@@ -44,7 +44,7 @@
 #if defined(ESP8266)
     // interrupt handler and related code must be in RAM on ESP8266,
     // according to issue #46.
-    #define RECEIVE_ATTR ICACHE_RAM_ATTR
+    #define RECEIVE_ATTR IRAM_ATTR
     #define VAR_ISR_ATTR
 #elif defined(ESP32)
     #define RECEIVE_ATTR IRAM_ATTR
@@ -89,8 +89,9 @@ static const RCSwitch::Protocol PROGMEM proto[] = {
   { 200, {  3, 130}, {  7, 16 }, {  3,  16}, false},     // protocol 8 Conrad RS-200 RX
   { 200, { 130, 7 }, {  16, 7 }, { 16,  3 }, true},      // protocol 9 Conrad RS-200 TX
   { 365, { 18,  1 }, {  3,  1 }, {  1,  3 }, true },     // protocol 10 (1ByOne Doorbell)
-  { 270, { 36,  1 }, {  1,  2 }, {  2,  1 }, true },     // protocol 11 (HT12E)
-  { 320, { 36,  1 }, {  1,  2 }, {  2,  1 }, true }      // protocol 12 (SM5212)
+  //{ 270, { 36,  1 }, {  1,  2 }, {  2,  1 }, true },     // protocol 11 (HT12E)
+  //{ 320, { 36,  1 }, {  1,  2 }, {  2,  1 }, true }      // protocol 12 (SM5212)
+  { 350, { 14,  4 }, {  1,  2 }, {  2,  1 }, false }     // protocol 13 (Dooya Cover)
 };
 
 enum {
